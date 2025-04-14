@@ -1,0 +1,28 @@
+[project]
+name = "goit-pythonweb-hw-12"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Natalia Kucheriava",email = "nkucheryava@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.9,<4.0"
+dependencies = [
+    "fastapi (>=0.115.12,<0.116.0)",
+    "sqlalchemy (>=2.0.40,<3.0.0)",
+    "asyncpg (>=0.30.0,<0.31.0)",
+    "pydantic (>=2.11.2,<3.0.0)",
+    "alembic (>=1.15.2,<2.0.0)",
+    "libgravatar (>=1.0.4,<2.0.0)",
+    "cloudinary (>=1.43.0,<2.0.0)",
+    "passlib[bcrypt] (>=1.7.4,<2.0.0)",
+    "python-jose (>=3.4.0,<4.0.0)",
+    "slowapi (>=0.1.9,<0.2.0)",
+    "pydantic-settings (>=2.8.1,<3.0.0)",
+    "fastapi-mail (>=1.4.2,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
