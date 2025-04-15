@@ -3,6 +3,10 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
+    """
+    This class definition is for a Settings class that inherits from BaseSettings. It defines a set of configuration settings for an application.
+    The model_config attribute defines how the settings are loaded from environment variables and a .env file.
+    """
     DB_URL: str
     JWT_SECRET: str
     JWT_ALGORITHM: str = "HS256"

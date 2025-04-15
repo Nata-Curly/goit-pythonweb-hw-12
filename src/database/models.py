@@ -16,6 +16,10 @@ class Base(DeclarativeBase):
 
 
 class Contact(Base):
+    """
+    This class definition is a SQLAlchemy model for a database table named "contacts". It defines the structure of the table, including its columns and relationships with other tables. 
+    Note that this class does not have any methods, only attributes that define the structure of the database table.
+    """
     __tablename__ = "contacts"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     first_name: Mapped[str] = mapped_column(String(50), nullable=False)
@@ -37,6 +41,7 @@ class Contact(Base):
 
 
 class User(Base):
+    """This class definition is a SQLAlchemy model for a database table named "users". It defines the structure of the table, including its columns."""
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
     username = Column(String, unique=True)

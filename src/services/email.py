@@ -23,6 +23,21 @@ conf = ConnectionConfig(
 
 
 async def send_email(email: EmailStr, username: str, host: str):
+    """
+    Sends an email with a link to confirm the given email address.
+
+    This function generates a JWT token containing the provided email address and
+    sends an email with a link that includes the token. The email is sent using
+    the FastAPI-Mail library.
+
+    Args:
+        email (EmailStr): The email address to be confirmed.
+        username (str): The username of the user associated with the email address.
+        host (str): The host to be used for the email confirmation link.
+
+    Raises:
+        ConnectionErrors: If there is a problem with the email configuration.
+    """
     try:
         token_verification = create_email_token({"sub": email})
         message = MessageSchema(

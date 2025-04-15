@@ -6,7 +6,7 @@ authors = [
     {name = "Natalia Kucheriava",email = "nkucheryava@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.11,<4.0"
 dependencies = [
     "fastapi (>=0.115.12,<0.116.0)",
     "sqlalchemy (>=2.0.40,<3.0.0)",
@@ -19,10 +19,15 @@ dependencies = [
     "python-jose (>=3.4.0,<4.0.0)",
     "slowapi (>=0.1.9,<0.2.0)",
     "pydantic-settings (>=2.8.1,<3.0.0)",
-    "fastapi-mail (>=1.4.2,<2.0.0)"
+    "fastapi-mail (>=1.4.2,<2.0.0)",
+    "python-multipart (>=0.0.20,<0.0.21)",
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+sphinx = "^8.2.3"
+

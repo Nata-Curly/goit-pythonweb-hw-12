@@ -4,6 +4,9 @@ from pydantic import BaseModel, Field, EmailStr, ConfigDict
 
 
 class ContactBase(BaseModel):
+    """
+    Base class for contact schema. Pydantic model that represents a contact's basic information.
+    """
     first_name: str = Field(max_length=50)
     last_name: str = Field(max_length=50)
     email: EmailStr
@@ -12,6 +15,9 @@ class ContactBase(BaseModel):
     additional_info: Optional[str] = Field(max_length=255, default=None)
 
 class ContactResponse(ContactBase):
+    """
+    Response class for contact schema. Pydantic model that represents a contact's basic information.
+    """
     id: int
     created_at: datetime
     updated_at: Optional[datetime] = None
@@ -20,6 +26,8 @@ class ContactResponse(ContactBase):
 
 
 class User(BaseModel):
+    """
+    Pydantic model that represents a user's basic information."""
     id: int
     username: str
     email: str
@@ -29,6 +37,7 @@ class User(BaseModel):
 
 
 class UserCreate(BaseModel):
+    """Pydantic model that represents the structure of data required to create a new user."""
     username: str
     email: str
     password: str
@@ -40,4 +49,5 @@ class Token(BaseModel):
 
 
 class RequestEmail(BaseModel):
+    """Pydantic model that represents the structure of data required to send an email."""
     email: EmailStr

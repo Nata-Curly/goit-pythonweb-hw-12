@@ -21,6 +21,14 @@ limiter = Limiter(key_func=get_remote_address)
 )
 @limiter.limit("7/minute")
 async def me(request: Request, user: User = Depends(get_current_user)):
+    """
+    Get current user.
+
+    Requires authorization header with JWT token.
+
+    Returns:
+        User: Current user.
+    """
     return user
 
 
@@ -30,6 +38,18 @@ async def update_avatar_user(
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
+    """
+    Update current user's avatar.
+
+    Requires authorization header with JWT token.
+
+    Args:
+        file (UploadFile): The avatar image. Must be a valid image file.
+
+    Returns:
+        User: The current user with the updated avatar.
+    """
+    
     avatar_url = UploadFileService(
         settings.CLD_NAME, settings.CLD_API_KEY, settings.CLD_API_SECRET
     ).upload_file(file, user.username)

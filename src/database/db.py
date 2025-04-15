@@ -12,6 +12,16 @@ from src.conf.config import settings
 
 class DatabaseSessionManager:
     def __init__(self, url: str):
+        """
+        Initializes the database session manager.
+
+        Args:
+            url (str): The SQLAlchemy-style URL to the database.
+
+        Attributes:
+            _engine (AsyncEngine | None): The engine for the database.
+            _session_maker (async_sessionmaker): A session maker bound to the engine.
+        """
         self._engine: AsyncEngine | None = create_async_engine(url)
         self._session_maker: async_sessionmaker = async_sessionmaker(
             autoflush=False, autocommit=False, bind=self._engine
