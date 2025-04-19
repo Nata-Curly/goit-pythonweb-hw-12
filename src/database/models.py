@@ -1,25 +1,30 @@
 from datetime import datetime
+from enum import Enum
 
-from sqlalchemy import Integer, String, Boolean, Column, func
-from sqlalchemy.orm import (
-    mapped_column,
-    relationship,
-    Mapped,
-    DeclarativeBase
-)
+from sqlalchemy import Integer, String, Boolean, Column, func, Enum as SqlEnum
+from sqlalchemy.orm import mapped_column, relationship, Mapped, DeclarativeBase
 from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.sql.schema import ForeignKey
 
 
 class Base(DeclarativeBase):
+    """Base class for SQLAlchemy models."""
+
     pass
+
+
+class UserRole(str, Enum):
+    """Enum class for user roles."""
+
+    USER = "user"
+    ADMIN = "admin"
 
 
 class Contact(Base):
     """
-    This class definition is a SQLAlchemy model for a database table named "contacts". It defines the structure of the table, including its columns and relationships with other tables. 
-    Note that this class does not have any methods, only attributes that define the structure of the database table.
+    This class definition is a SQLAlchemy model for a database table named "contacts".
     """
+
     __tablename__ = "contacts"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     first_name: Mapped[str] = mapped_column(String(50), nullable=False)
@@ -41,7 +46,10 @@ class Contact(Base):
 
 
 class User(Base):
-    """This class definition is a SQLAlchemy model for a database table named "users". It defines the structure of the table, including its columns."""
+    """
+    SQLAlchemy model for a database table named "users".
+    """
+
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
     username = Column(String, unique=True)
@@ -50,3 +58,4 @@ class User(Base):
     created_at = Column(DateTime, default=func.now())
     avatar = Column(String(255), nullable=True)
     confirmed = Column(Boolean, default=False)
+    role: Mapped[UserRole] = mapped_column(SqlEnum(UserRole), default=UserRole.USER)

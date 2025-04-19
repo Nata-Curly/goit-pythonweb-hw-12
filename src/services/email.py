@@ -21,7 +21,6 @@ conf = ConnectionConfig(
     TEMPLATE_FOLDER=Path(__file__).parent / "templates",
 )
 
-
 async def send_email(email: EmailStr, username: str, host: str):
     """
     Sends an email with a link to confirm the given email address.
@@ -55,3 +54,17 @@ async def send_email(email: EmailStr, username: str, host: str):
         await fm.send_message(message, template_name="verify_email.html")
     except ConnectionErrors as err:
         print(err)
+
+
+async def send_reset_password_email(email: str, token: str):
+    reset_link = f"{settings.FRONTEND_URL}/reset-password?token={token}"
+
+    message = MessageSchema(
+        subject="Password Reset Request",
+        recipients=[email],
+        body=f"To reset your password, click the link below:\n\n{reset_link}\n\nIf you didn’t request this, just ignore it.",
+        subtype="plain",
+    )
+
+    fm = FastMail(conf)
+    await fm.send_message(message)

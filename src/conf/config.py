@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     The model_config attribute defines how the settings are loaded from environment variables and a .env file.
     """
     DB_URL: str
+    TEST_DB_URL: str
     JWT_SECRET: str
     JWT_ALGORITHM: str = "HS256"
     JWT_EXPIRATION_SECONDS: int = 3600
